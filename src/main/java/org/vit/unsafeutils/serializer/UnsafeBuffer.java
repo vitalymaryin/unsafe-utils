@@ -224,15 +224,18 @@ public class UnsafeBuffer {
     public String getString() {
         int arraySize = getInt();
         int alignedPos = getInt();
-        byte[] byteStr = new byte[arraySize];
-
-        long bytesToCopy = byteStr.length;
-        unsafe.copyMemory(buffer, BYTE_ARRAY_OFFSET + pos,
-                byteStr, BYTE_ARRAY_OFFSET,
-                bytesToCopy);
-        pos += alignedPos;
-
-        return new String(byteStr);
+        if (arraySize > 0){
+            byte[] byteStr = new byte[arraySize];
+            long bytesToCopy = byteStr.length;
+            unsafe.copyMemory(buffer, BYTE_ARRAY_OFFSET + pos,
+                    byteStr, BYTE_ARRAY_OFFSET,
+                    bytesToCopy);
+            pos += alignedPos;
+            return new String(byteStr);
+        }else {
+            pos += alignedPos;
+            return null;
+        }
     }
 
     public void putStringArray(final String[] values) {

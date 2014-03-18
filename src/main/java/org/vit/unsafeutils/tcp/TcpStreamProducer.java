@@ -1,6 +1,5 @@
 package org.vit.unsafeutils.tcp;
 
-import java.nio.channels.ClosedChannelException;
 import org.apache.log4j.Logger;
 import org.vit.unsafeutils.api.UnsafeSerializable;
 import org.vit.unsafeutils.serializer.UnsafeSerializer;
@@ -11,7 +10,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.channels.*;
 import java.nio.channels.spi.SelectorProvider;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -128,10 +126,10 @@ public class TcpStreamProducer extends TcpGenericManager implements Service, Run
     public void sendData(UnsafeSerializable data){
         try {
             byte[] arr = UnsafeSerializer.write(data);
-            if (debugEnabled){
+/*            if (debugEnabled){
                 logger.debug("barr size:" + arr.length);
                 logger.debug("barr :" + Arrays.toString(arr));
-            }
+            }*/
 
             Iterator<SocketChannel> iterator = pendingData.keySet().iterator();
             while (iterator.hasNext()){

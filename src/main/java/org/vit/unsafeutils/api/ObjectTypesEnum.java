@@ -16,6 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 public enum ObjectTypesEnum {
+    TMP((byte) 0, new MarketData(), MarketData.class.getSimpleName()),
     MARKET_DATA((byte) 1, new MarketData(), MarketData.class.getSimpleName());
 
     private final UnsafeSerializable cls;

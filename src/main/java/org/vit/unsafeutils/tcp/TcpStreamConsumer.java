@@ -1,6 +1,5 @@
 package org.vit.unsafeutils.tcp;
 
-import java.nio.channels.SelectionKey;
 import org.apache.log4j.Logger;
 import org.vit.unsafeutils.api.UnsafeSerializable;
 import org.vit.unsafeutils.serializer.UnsafeSerializer;
@@ -220,5 +219,9 @@ public class TcpStreamConsumer extends TcpGenericManager implements Service, Run
 
     public void setSelectionOpts(int selectionOpts) {
         this.selectionOpts = selectionOpts;
+    }
+
+    public boolean isConnected(){
+        return connected;
     }
 }

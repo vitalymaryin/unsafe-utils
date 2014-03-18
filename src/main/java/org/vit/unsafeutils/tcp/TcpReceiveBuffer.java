@@ -25,7 +25,7 @@ public class TcpReceiveBuffer {
     private ByteBuffer readBuffer;
     private int capacity = 52428800;
 
-    TcpReceiveBuffer(int bufSize){
+    public TcpReceiveBuffer(int bufSize){
         this.capacity = bufSize;
         readBuffer = ByteBuffer.wrap(new byte[this.capacity]);
     }

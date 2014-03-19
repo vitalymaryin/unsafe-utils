@@ -4,8 +4,9 @@ import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
-import org.vit.unsafeutils.api.MarketData;
+import org.vit.unsafeutils.api.OrderData;
 import org.vit.unsafeutils.api.UnsafeSerializable;
+import org.vit.unsafeutils.serializer.UnsafeSerializer;
 import org.vit.unsafeutils.tcp.TcpReceiveBuffer;
 import org.vit.unsafeutils.tcp.TcpStreamConsumer;
 import org.vit.unsafeutils.tcp.TcpStreamProcessor;
@@ -41,6 +42,10 @@ public class TcpTest {
 
     public static void main(String[] args){
         log4j();
+
+        UnsafeSerializer.init("org.vit.unsafeutils.api");
+
+
         // setup client
         TcpStreamConsumer client = new TcpStreamConsumer();
         TcpReceiveBuffer cltBuff = new TcpReceiveBuffer(100000000);
@@ -79,7 +84,7 @@ public class TcpTest {
         }
 
         long sendStart = System.nanoTime();
-        MarketData md = new MarketData();
+        OrderData md = new OrderData();
         md.setRic("VOD.L");
 
         for (int t=0;t<10;t++){

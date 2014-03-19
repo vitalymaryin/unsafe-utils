@@ -787,7 +787,7 @@ public class MarketData implements UnsafeSerializable {
 
     @Override
     public void write(UnsafeBuffer buffer) {
-        buffer.putByte(ObjectTypesEnum.MARKET_DATA.getId());
+        buffer.putInt(getClass().getName().hashCode());
         buffer.putLong(lastTickTime);
         buffer.putLong(lastPublishTime);
         buffer.putBoolean(hideLast);
